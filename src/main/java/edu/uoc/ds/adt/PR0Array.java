@@ -34,9 +34,26 @@ public class PR0Array {
     }
 
     public int binarySearch(int value_to_search) {
-        int retVal = java.util.Arrays.binarySearch(this.array, value_to_search);
+        int firstElement = 0;
+        int lastElement = this.array.length - 1;
+        int retVal = -1;
 
-        return retVal < 0 ? -1 : retVal;
+        int mid = (firstElement + lastElement) / 2;
+
+        while (firstElement <= lastElement) {
+            if (this.array[mid] < value_to_search) {
+                firstElement = mid + 1;
+            } else if (this.array[mid] == value_to_search) {
+                retVal = mid;
+                break;
+            } else {
+                lastElement = mid - 1;
+            }
+
+            mid = (firstElement + lastElement) / 2;
+        }
+
+        return retVal;
     }
 
 }
